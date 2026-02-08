@@ -1,107 +1,651 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    
-<meta charset="utf-8" />
-<title>My Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saurabh Kumar | AI & Backend Architect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #050507;
+            color: #e2e8f0;
+            scroll-behavior: smooth;
+        }
 
-<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-<div class="sidenav">
-    <a href="#about">About</a>
-    <a href="#achievements">Achievements</a>
-    <a href="#interest">Interests and Hobbies</a>    
-    <a href="#contact" class="right">Contact</a>
-  </div>
+        .glass-card {
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .experience-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .experience-card:hover {
+            background: rgba(15, 23, 42, 0.7);
+            border-color: rgba(96, 165, 250, 0.2);
+        }
+
+        .details-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height(0.6s cubic-bezier(0.4, 0, 0.2, 1));
+        }
+
+        .details-content.active {
+            max-height: 4000px;
+            padding-bottom: 2rem;
+        }
+
+        .skill-tag {
+            background: rgba(96, 165, 250, 0.05);
+            color: #93c5fd;
+            border: 1px solid rgba(96, 165, 250, 0.15);
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .chevron-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .rotate-180 { transform: rotate(180deg); }
+
+        .sub-project-card {
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 2px solid #3b82f6;
+            padding: 1.75rem;
+            border-radius: 0 16px 16px 0;
+            height: 100%;
+        }
+
+        .impact-pill {
+            background: rgba(34, 197, 94, 0.1);
+            color: #4ade80;
+            padding: 2px 10px;
+            border-radius: 99px;
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .cert-card {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .cert-card:hover {
+            transform: translateX(5px);
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050507; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+    </style>
 </head>
+<body class="antialiased">
 
-<body> 
-    
-	
-
-	<div id="container">
-        <p id="logo"><img src="saurabh.jpg" width="100" height="200" alt="Saurabh logo "  />
-        
-    </p>
-
-       
-    
-        <div id="header" style="border: #4CAF50;">
-            <h1>Hello, I'm Saurabh Kumar</h1>
-            <h2>Competetive-Coder||Web-designer ||Data-Science || CSE Undergraduate @ IIT PKD  .</h2>
-        </div>
-        
-        <div id="content">
-		<a id="about"> <h3><b><u>About Me</u></b></h3></a>
-            
-           <b> <p>I am a Btech 3rd year Student. I am currently pursuing my Btech in Computer Science & Engineering from Indian Institute of Technology, Palakkad. I pride myself in having the nerdy skills to build top notch creations online, as well as being knowledgeable in the print side of design.<br> Enthusiastic and self-motivated learner. Eager to join Company to bring top-class frontend /backend development, UX,Machine Learning,AI and visual design skills. </p></b>
-
-                  
-        
-           <a id="achievements"><h3><b><u>My Achievements</u></b></h3></a>
-            <b><ul>
-            <li>Designed an Online Library portal for students to get and download books on free.</li>
-            <li>Designed a text predictor (based on google text predictor)using NLP and ML.</li>
-            <li>Maintained and updated website functionalities in collaboration with the CS and web development teams.</li>
-		    
-          </ul></b>
-           <br>
-           
-           <a id="interest"> <h3><b><u>My Interests and Hobbies</u></b></h3></a>
-            
-           <b> <p>I’m forever creating design work for both myself as personal projects. I am not just involved in these web-designing.Apart from it I am a Competetive Programmer at codechef.I have done projects based on ML/AI. Apart from these I loves playing Football.I also like dancing and standup comedy. </p></b>
-            <div class="portfolio-item">
-                <img src="dance.png" width="180" height="200"alt="View more info" />
-		    <b> <p class="btn">Rock Dancing</p> </b>
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 top-0 bg-[#050507]/80 backdrop-blur-xl border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold tracking-tight text-white">Saurabh Kumar<span class="text-blue-500"></span></div>
+            <div class="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest text-slate-400">
+                <a href="#about" class="hover:text-white transition">Core Focus</a>
+                <a href="#experience" class="hover:text-white transition text-white font-bold">Experience</a>
+                <a href="#certifications" class="hover:text-white transition">Certifications</a>
+                <a href="#tech" class="hover:text-white transition">Arsenal</a>
+                <a href="#contact" class="hover:text-white transition">Connect</a>
             </div>
-            <br><br>
-            
-            <div class="portfolio-item">
-                <img src="football.png" width="180" height="200" alt="View more info" />
-		    <b> <p class="btn">Football Fantasy </p></b>
-            </div>
-            <br><br>
-            <div class="portfolio-item">
-                <img src="speaking.jfif" width="180" height="200" alt="View more info" />
-		    <b> <p class="btn">StandUp Comedian</p></b>
-            </div>
-            <br><br><br><br><br><br><br><br><br><br><br><br>
-           <a id="contact"> <h3><b>Contact Details</b></h3></a>
-            
-            <p> Here’s my contact detail.</p>
-            
-		<b> <p>Email</b> : 111901046@smail.iitpkd.ac.in
-            <br>
-		<b> Phone</b> : +919470625570
-           </p>
-           
-            
-            
-           
-          <a href="https://www.linkedin.com/in/saurabh-kumar-580735199/" class="linkedin btn"><i class="fa fa-linkedin fa-fw">
-        </i> Connect through LinkedIn
-      </a>
-     &nbsp;
-          <a href="https://www.facebook.com" class="fb btn">
-            <i class="fa fa-facebook fa-fw"></i>Contact with Facebook    
-           </a>
-           &nbsp;
-          <a href="https://twitter.com/Saurabh60145906" class="twitter btn">
-            <i class="fa fa-twitter fa-fw"></i> Twitter Profile
-          </a>
-        
         </div>
-        
-        <div id="footer">
-            <p id="copyright">&copy; Saurabh Kumar</p>
-            <p id="back-top"><a href="#">Going up?</a></p>
-        </div>
-    
-	
-	</div>
+    </nav>
 
+    <!-- Hero -->
+    <section id="about" class="pt-40 pb-20 px-6">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-bold uppercase tracking-widest mb-6">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                    </span>
+                    Currently Scaling Oracle Fusion Applications with Agentic AI
+                </div>
+                <h1 class="text-6xl md:text-8xl font-extrabold mb-8 tracking-tighter leading-[1.1]">
+                    Software <br/><span class="gradient-text">Developer.</span>
+                </h1>
+                <p class="text-xl text-slate-400 mb-10 max-w-xl leading-relaxed">
+                    IIT Palakkad alumni. Specializing in high-throughput distributed systems and <strong>Agentic AI</strong>. I turn complex enterprise legacy into high-performance microservices.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="mailto:saurabhkumar121201@gmail.com" class="px-8 py-4 bg-blue-600 hover:bg-blue-700 rounded-full font-bold transition">Hire Me</a>
+                    <a href="#experience" class="px-8 py-4 border border-white/10 hover:bg-white/5 rounded-full font-bold transition">Explore Portfolio</a>
+                </div>
+            </div>
+            <div class="grid gap-6">
+                <div class="glass-card p-8 rounded-[2rem] border-l-4 border-l-blue-500">
+                    <h3 class="font-bold text-white text-lg mb-2">Agentic Frameworks</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">Designing RAG pipelines that bridge the gap between unstructured LLM reasoning and structured enterprise database schemas (SQL/VectorDB).</p>
+                </div>
+                <div class="glass-card p-8 rounded-[2rem] border-l-4 border-l-purple-500">
+                    <h3 class="font-bold text-white text-lg mb-2">High-Availability Scaling</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">Experienced in scaling microservices across EKS clusters with Kafka-driven asynchronous messaging and gRPC for sub-millisecond inter-service communication.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Skills Section -->
+    <section id="skills" class="py-24 px-6 bg-[#0a0a0c]">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-black mb-16 text-center tracking-tight text-white uppercase">Technical Proficiency</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <!-- Languages -->
+                <div>
+                    <h4 class="text-blue-500 font-bold text-xs uppercase tracking-widest mb-6 border-b border-blue-500/20 pb-2">Languages & Core</h4>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center"><span class="text-slate-300">Java (8/11/17)</span> <span class="text-[10px] text-slate-600">Expert</span></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-300">Python</span> <span class="text-[10px] text-slate-600">Advanced</span></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-300">C / C++</span> <span class="text-[10px] text-slate-600">Proficient</span></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-300">JavaScript</span> <span class="text-[10px] text-slate-600">Proficient</span></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-300">Bash / Shell</span> <span class="text-[10px] text-slate-600">Advanced</span></div>
+                    </div>
+                </div>
+                <!-- Frameworks -->
+                <div>
+                    <h4 class="text-purple-500 font-bold text-xs uppercase tracking-widest mb-6 border-b border-purple-500/20 pb-2">Frameworks & Backend</h4>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center"><span class="text-slate-300">Spring Boot / MVC</span> <span class="text-[10px] text-slate-600">Expert</span></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-300">gRPC / Protobuf</span> <span class="text-[10px] text-slate-600">Advanced</span></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-300">Kafka / Messaging</span> <span class="text-[10px] text-slate-600">Advanced</span></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-300">Hibernate / JPA</span> <span class="text-[10px] text-slate-600">Expert</span></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-300">JUnit / Mockito</span> <span class="text-[10px] text-slate-600">Advanced</span></div>
+                    </div>
+                </div>
+                <!-- Cloud/Data -->
+                <div>
+                    <h4 class="text-green-500 font-bold text-xs uppercase tracking-widest mb-6 border-b border-green-500/20 pb-2">Cloud & Intelligence</h4>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center"><span class="text-slate-300">AWS (EKS, Lambda)</span> <span class="text-[10px] text-slate-600">Advanced</span></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-300">VectorDB (ChromaDB, Oracle Vector DB)</span> <span class="text-[10px] text-slate-600">Advanced</span></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-300">RAG Architectures</span> <span class="text-[10px] text-slate-600">Expert</span></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-300">Docker / Kubernetes</span> <span class="text-[10px] text-slate-600">Advanced</span></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-300">LLM Function Calling</span> <span class="text-[10px] text-slate-600">Expert</span></div>
+                    </div>
+                </div>
+                <!-- Tools/Security -->
+                <div>
+                    <h4 class="text-orange-500 font-bold text-xs uppercase tracking-widest mb-6 border-b border-orange-500/20 pb-2">Data & Security</h4>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center"><span class="text-slate-300">MySQL / Oracle DB</span> <span class="text-[10px] text-slate-600">Expert</span></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-300">Redis / Caching</span> <span class="text-[10px] text-slate-600">Advanced</span></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-300">OAuth2 / OIDC / SSO</span> <span class="text-[10px] text-slate-600">Expert</span></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-300">Prometheus / Grafana</span> <span class="text-[10px] text-slate-600">Advanced</span></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-300">OpenTelemetry</span> <span class="text-[10px] text-slate-600">Proficient</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Arsenal Section: Updated with AI Agent Jargon -->
+    <section id="tech" class="py-24 px-6 bg-[#08080a]">
+        <div class="max-w-7xl mx-auto text-center text-white">
+            <h2 class="text-4xl font-black mb-16">Agentic AI Arsenal</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Cognitive Frameworks -->
+                <div class="glass-card p-10 rounded-[2.5rem] hover:border-blue-500/50 transition">
+                    <i class="fas fa-brain text-blue-400 mb-6 block text-3xl"></i>
+                    <h4 class="font-bold text-md uppercase mb-4 tracking-widest">Reasoning</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">LLMs, Advanced RAG, Chain-of-Thought (CoT), Semantic Routing, ReAct Frameworks</p>
+                </div>
+                <!-- Scalable Orchestration -->
+                <div class="glass-card p-10 rounded-[2.5rem] hover:border-purple-500/50 transition">
+                    <i class="fas fa-network-wired text-purple-400 mb-6 block text-3xl"></i>
+                    <h4 class="font-bold text-md uppercase mb-4 tracking-widest">Orchestration</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Agentic Mesh, Multi-Agent Systems (MAS), Kafka-Driven Async Reasoning, gRPC Tool-Use</p>
+                </div>
+                <!-- Distributed Intelligence -->
+                <div class="glass-card p-10 rounded-[2.5rem] hover:border-pink-400/50 transition">
+                    <i class="fas fa-microchip text-pink-400 mb-6 block text-3xl"></i>
+                    <h4 class="font-bold text-md uppercase mb-4 tracking-widest">Cognitive Core</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Java (Spring Runtime), Python (Logic), VectorDBs (Retrieval), Function Calling & Tooling</p>
+                </div>
+                <!-- Trust & Reliability -->
+                <div class="glass-card p-10 rounded-[2.5rem] hover:border-green-400/50 transition">
+                    <i class="fas fa-shield-halved text-green-400 mb-6 block text-3xl"></i>
+                    <h4 class="font-bold text-md uppercase mb-4 tracking-widest">Guardrails</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Agentic Safety, Hallucination Checks, RBAC, OAuth2, Observability (Tracing Reasoning Paths)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-24 px-6 bg-[#08080a]">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-black mb-4 text-center tracking-tight text-white">Work Experience</h2>
+            <p class="text-slate-500 text-center mb-16 max-w-2xl mx-auto text-sm italic">Click on each role to expand technical details, problem statements, and implementation strategies.</p>
+
+            <div class="space-y-8">
+                <!-- Oracle -->
+                <div class="glass-card rounded-[2.5rem] overflow-hidden experience-card shadow-2xl" onclick="toggleExperience('oracle')">
+                    <div class="p-8 md:p-10 flex justify-between items-center">
+                        <div class="flex items-center gap-8">
+                            <div class="w-20 h-20 bg-blue-500/10 rounded-3xl flex items-center justify-center text-blue-500 text-3xl font-black">OR</div>
+                            <div>
+                                <h3 class="text-3xl font-bold text-white mb-1">Oracle</h3>
+                                <p class="text-blue-400 font-semibold tracking-wide">Applications Developer (IC2) <span class="text-slate-600 font-normal ml-2">| July 2025 - Present</span></p>
+                            </div>
+                        </div>
+                        <i id="oracle-chevron" class="fas fa-chevron-down text-slate-500 chevron-icon text-xl"></i>
+                    </div>
+                    
+                    <div id="oracle-details" class="details-content">
+                        <div class="px-8 md:px-10 pb-12 space-y-10 border-t border-white/5 pt-10">
+                            
+                            <!-- AI SQL Project -->
+                            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                                <div class="lg:col-span-4">
+                                    <div class="flex items-center gap-2 mb-4">
+                                        <span class="impact-pill">Impact: Data Democratization</span>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-white mb-3">AI-Assisted SQL Generator</h4>
+                                    <p class="text-xs text-slate-400 leading-relaxed">Bridging the gap between natural language business queries and complex Oracle DB schemas.</p>
+                                </div>
+                                <div class="lg:col-span-8 sub-project-card border-l-blue-500">
+                                    <div class="mb-4">
+                                        <h5 class="text-white font-bold text-sm mb-2">Problem Statement:</h5>
+                                        <p class="text-xs text-slate-300">Enterprise data retrieval required manual SQL writing by developers, creating bottlenecks for decision-makers and high operational overhead.</p>
+                                    </div>
+                                    <div class="mb-4">
+                                        <h5 class="text-white font-bold text-sm mb-2">Technical Implementation:</h5>
+                                        <p class="text-xs text-slate-300 leading-relaxed">Developed a <strong>RAG (Retrieval-Augmented Generation)</strong> pipeline using <strong>LLMs and Vector Databases</strong>. I implemented semantic schema matching where the model retrieves only relevant table DDLs based on user intent, reducing token overhead and improving query accuracy to 95%+.</p>
+                                    </div>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="skill-tag">LLMs</span><span class="skill-tag">RAG Architecture</span><span class="skill-tag">VectorDB</span><span class="skill-tag">Prompt Engineering</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- AI Triage Project -->
+                            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                                <div class="lg:col-span-4">
+                                    <div class="flex items-center gap-2 mb-4">
+                                        <span class="impact-pill">Impact: Faster Triage</span>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-white mb-3">SR Classification AI Agent</h4>
+                                    <p class="text-xs text-slate-400 leading-relaxed">Context-aware automation for enterprise Service Requests.</p>
+                                </div>
+                                <div class="lg:col-span-8 sub-project-card border-l-purple-500">
+                                    <div class="mb-4">
+                                        <h5 class="text-white font-bold text-sm mb-2">Problem Statement:</h5>
+                                        <p class="text-xs text-slate-300">Massive volumes of service tickets resulted in high manual sorting latency, leading to breached SLAs for critical enterprise customers.</p>
+                                    </div>
+                                    <div class="mb-4">
+                                        <h5 class="text-white font-bold text-sm mb-2">Technical Implementation:</h5>
+                                        <p class="text-xs text-slate-300 leading-relaxed">Built an intelligent agent layer that performs <strong>real-time categorization</strong> of incoming SRs. Used custom embeddings to match tickets with historical solution patterns, enabling automated prioritization and contextual response suggestions via backend automation pipelines.</p>
+                                    </div>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="skill-tag">Agentic AI</span><span class="skill-tag">Python</span><span class="skill-tag">Embeddings</span><span class="skill-tag">Triage Automation</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Migration Project -->
+                            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                                <div class="lg:col-span-4">
+                                    <div class="flex items-center gap-2 mb-4">
+                                        <span class="impact-pill">Impact: 25% Latency Cut</span>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-white mb-3">NextGen SaaS Migration</h4>
+                                    <p class="text-xs text-slate-400 leading-relaxed">Transitioning Oracle Fusion legacy components to a modern microservices mesh.</p>
+                                </div>
+                                <div class="lg:col-span-8 sub-project-card border-l-green-500">
+                                    <div class="mb-4">
+                                        <h5 class="text-white font-bold text-sm mb-2">Problem Statement:</h5>
+                                        <p class="text-xs text-slate-300">The legacy SaaS architecture faced scalability limits during peak global traffic, with synchronous service calls causing cascading failures.</p>
+                                    </div>
+                                    <div class="mb-4">
+                                        <h5 class="text-white font-bold text-sm mb-2">Technical Implementation:</h5>
+                                        <p class="text-xs text-slate-300 leading-relaxed">Engineered high-performance microservices using <strong>Java, Spring Boot, and gRPC</strong>. Implemented <strong>Kafka</strong> for event-driven, asynchronous inter-service communication. This decoupled the core reasoning layers from data execution, significantly enhancing modularity and fault tolerance.</p>
+                                    </div>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="skill-tag">Java</span><span class="skill-tag">Spring Boot</span><span class="skill-tag">gRPC</span><span class="skill-tag">Kafka</span><span class="skill-tag">Microservices</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Amazon -->
+                <div class="glass-card rounded-[2.5rem] overflow-hidden experience-card" onclick="toggleExperience('amazon')">
+                    <div class="p-8 md:p-10 flex justify-between items-center">
+                        <div class="flex items-center gap-8">
+                            <div class="w-20 h-20 bg-yellow-500/10 rounded-3xl flex items-center justify-center text-yellow-500 text-3xl font-black">AM</div>
+                            <div>
+                                <h3 class="text-3xl font-bold text-white mb-1">Amazon IN</h3>
+                                <p class="text-yellow-500 font-semibold tracking-wide">SDE I <span class="text-slate-600 font-normal ml-2">| May 2025 - July 2025</span></p>
+                            </div>
+                        </div>
+                        <i id="amazon-chevron" class="fas fa-chevron-down text-slate-500 chevron-icon text-xl"></i>
+                    </div>
+                    
+                    <div id="amazon-details" class="details-content">
+                        <div class="px-8 md:px-10 pb-12 space-y-10 border-t border-white/5 pt-10">
+                            
+                            <!-- Amazon Payment project -->
+                            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                                <div class="lg:col-span-4">
+                                    <div class="flex items-center gap-2 mb-4">
+                                        <span class="impact-pill">Impact: Zero Downtime Refactor</span>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-white mb-3">Card Payments Infrastructure</h4>
+                                    <p class="text-xs text-slate-400 leading-relaxed">Enhancing the reliability of Amazon's payment gateway for millions of cards.</p>
+                                </div>
+                                <div class="lg:col-span-8 sub-project-card border-l-yellow-500">
+                                    <h5 class="text-white font-bold text-sm mb-2">Technical Deep-Dive:</h5>
+                                    <p class="text-xs text-slate-300 leading-relaxed mb-4">Worked within the <strong>Payments</strong> team to refactor critical path code. The objective was to eliminate technical debt and redundant logic that slowed down payment processing. Successfully migrated core modules to a more resilient cloud-native structure, utilizing <strong>AWS EC2 and Lambda</strong> for scalable transaction handling.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="skill-tag">Java</span><span class="skill-tag">AWS EC2</span><span class="skill-tag">Lambda</span><span class="skill-tag">S3</span><span class="skill-tag">EKS</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Amazon Ops project -->
+                            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                                <div class="lg:col-span-4">
+                                    <div class="flex items-center gap-2 mb-4">
+                                        <span class="impact-pill">Impact: 30% Response Speed</span>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-white mb-3">Operational Excellence (DevOps)</h4>
+                                    <p class="text-xs text-slate-400 leading-relaxed">Proactive health monitoring for massive scale.</p>
+                                </div>
+                                <div class="lg:col-span-8 sub-project-card border-l-orange-500">
+                                    <h5 class="text-white font-bold text-sm mb-2">Technical Deep-Dive:</h5>
+                                    <p class="text-xs text-slate-300 leading-relaxed mb-4">Configured <strong>AWS CloudWatch alarms</strong> and custom performance metrics dashboards. By implementing granular health checks and error rate alerting, I reduced the "time-to-detection" for service anomalies, directly contributing to a 30% improvement in incident response times.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="skill-tag">CloudWatch</span><span class="skill-tag">Observability</span><span class="skill-tag">Incident Management</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strand Life Sciences Case Studies -->
+                <div class="glass-card rounded-[3rem] overflow-hidden experience-card border-white/5 shadow-2xl" onclick="toggleExperience('strand')">
+                    <div class="p-10 flex justify-between items-center">
+                        <div class="flex items-center gap-10">
+                            <div class="w-24 h-24 bg-green-500/10 rounded-[2rem] flex items-center justify-center text-green-500 text-4xl font-black">SL</div>
+                            <div>
+                                <h3 class="text-4xl font-black text-white mb-2 tracking-tighter">Strand Life Sciences</h3>
+                                <p class="text-green-500 font-bold tracking-widest uppercase text-xs">Associate Software Engineer II <span class="text-slate-600 font-normal ml-3">| 2023 - 2025</span></p>
+                            </div>
+                        </div>
+                        <i id="strand-chevron" class="fas fa-chevron-down text-slate-500 chevron-icon text-2xl"></i>
+                    </div>
+                    
+                    <div id="strand-details" class="details-content">
+                        <div class="px-10 pb-16 space-y-12 border-t border-white/5 pt-12">
+                            
+                            <!-- OMS & Zoho Integration -->
+                            <div class="grid lg:grid-cols-12 gap-10 items-start">
+                                <div class="lg:col-span-4">
+                                    <span class="impact-pill">Scale: 100% Automation</span>
+                                    <h4 class="text-2xl font-bold text-white mt-6 mb-4 leading-tight">OMS-Zoho Clinical Sync</h4>
+                                    <p class="text-sm text-slate-400 leading-relaxed">Automating report synchronization across heterogeneous clinical platforms.</p>
+                                </div>
+                                <div class="lg:col-span-8 sub-project-card border-l-green-500">
+                                    <span class="sde2-theme">Integration & Workflow Automation</span>
+                                    <div class="mb-6">
+                                        <h5 class="text-white font-bold text-sm mb-2">Problem Statement:</h5>
+                                        <p class="text-sm text-slate-300">Manual report synchronization between clinical OMS and CRM (Zoho) was prone to high error rates (90%) and significant operational lag.</p>
+                                    </div>
+                                    <div class="mb-6">
+                                        <h5 class="text-white font-bold text-sm mb-2">Technical Challenges:</h5>
+                                        <p class="text-sm text-slate-300">Establishing a reliable REST API-driven sync that triggers immediately upon clinical sign-off while handling partial failures and ensuring data consistency.</p>
+                                    </div>
+                                    <div class="mb-6">
+                                        <h5 class="text-white font-bold text-sm mb-2">Architectural Solution:</h5>
+                                        <p class="text-sm text-slate-300">Developed an <strong>automated push notification service</strong> using Spring Boot and Zoho APIs. Optimized the Repository and Service layers to handle <strong>JSON processing and state-management</strong>, eliminating manual intervention and reducing human error by 90%.</p>
+                                    </div>
+                                    <div class="flex flex-wrap gap-3">
+                                        <span class="skill-tag">REST Integration</span><span class="skill-tag">Spring Boot</span><span class="skill-tag">JSON Processing</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Security & RBAC -->
+                            <div class="grid lg:grid-cols-12 gap-10 items-start">
+                                <div class="lg:col-span-4">
+                                    <span class="impact-pill">Security: Zero-Trust Access</span>
+                                    <h4 class="text-2xl font-bold text-white mt-6 mb-4 leading-tight">Clinical RBAC Enforcement</h4>
+                                    <p class="text-sm text-slate-400 leading-relaxed">Securing highly sensitive medical reports via granular access control.</p>
+                                </div>
+                                <div class="lg:col-span-8 sub-project-card border-l-purple-500">
+                                    <span class="sde2-theme">Authorization & Security Compliance</span>
+                                    <div class="mb-6">
+                                        <h5 class="text-white font-bold text-sm mb-2">Problem Statement:</h5>
+                                        <p class="text-sm text-slate-300">Potential unauthorized access to sensitive medical records and lack of auditability for regulatory compliance.</p>
+                                    </div>
+                                    <div class="mb-6">
+                                        <h5 class="text-white font-bold text-sm mb-2">Technical Challenges:</h5>
+                                        <p class="text-sm text-slate-300">Designing permissions that follow the <strong>principle of least privilege</strong> without hindering doctor/technician clinical workflows.</p>
+                                    </div>
+                                    <div class="mb-6">
+                                        <h5 class="text-white font-bold text-sm mb-2">Architectural Solution:</h5>
+                                        <p class="text-sm text-slate-300">Enforced granular <strong>Role-Based Access Control (RBAC)</strong> policies and integrated <strong>Audit Logging mechanisms</strong>. This ensured end-to-end traceability and strengthened data security for HIPAA-equivalent compliance.</p>
+                                    </div>
+                                    <div class="flex flex-wrap gap-3">
+                                        <span class="skill-tag">RBAC Design</span><span class="skill-tag">Compliance Logging</span><span class="skill-tag">Data Sovereignty</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Performance Tuning -->
+                            <div class="grid lg:grid-cols-12 gap-10 items-start">
+                                <div class="lg:col-span-4">
+                                    <span class="impact-pill">Performance: 20% Speedup</span>
+                                    <h4 class="text-2xl font-bold text-white mt-6 mb-4 leading-tight">JVM & Database Optimization</h4>
+                                    <p class="text-sm text-slate-400 leading-relaxed">Solving runtime bottlenecks in high-concurrency genomic processing tools.</p>
+                                </div>
+                                <div class="lg:col-span-8 sub-project-card border-l-blue-500">
+                                    <span class="sde2-theme">Throughput & Memory Engineering</span>
+                                    <div class="mb-6">
+                                        <h5 class="text-white font-bold text-sm mb-2">Problem Statement:</h5>
+                                        <p class="text-sm text-slate-300">Frequent memory leaks and slow-loading genetic report pages degraded clinical throughput and application stability.</p>
+                                    </div>
+                                    <div class="mb-6">
+                                        <h5 class="text-white font-bold text-sm mb-2">Technical Challenges:</h5>
+                                        <p class="text-sm text-slate-300">Identifying specific GC-intensive code paths and nested MySQL query bottlenecks within massive genomic datasets.</p>
+                                    </div>
+                                    <div class="mb-6">
+                                        <h5 class="text-white font-bold text-sm mb-2">Architectural Solution:</h5>
+                                        <p class="text-sm text-slate-300">Performed <strong>JVM Memory Profiling</strong> to diagnose and resolve memory issues. Implemented <strong>MySQL Indexing strategies</strong> and refactored JPA queries, resulting in a 20% reduction in response time and significantly enhanced system stability under load.</p>
+                                    </div>
+                                    <div class="flex flex-wrap gap-3">
+                                        <span class="skill-tag">JVM Tuning (G1GC)</span><span class="skill-tag">Memory Profiling</span><span class="skill-tag">Query Optimization</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Infrastructure & Pipelines (ASE I) -->
+                            <div class="grid lg:grid-cols-12 gap-10 items-start">
+                                <div class="lg:col-span-4">
+                                    <span class="impact-pill">Ops: 30% Effort Reduction</span>
+                                    <h4 class="text-2xl font-bold text-white mt-6 mb-4 leading-tight">Data Pipeline Automation</h4>
+                                    <p class="text-sm text-slate-400 leading-relaxed">Establishing robust infrastructure and automated data flows for genomic analysis.</p>
+                                </div>
+                                <div class="lg:col-span-8 sub-project-card border-l-orange-500">
+                                    <span class="sde2-theme">Infrastructure & Pipeline Engineering</span>
+                                    <div class="mb-6">
+                                        <h5 class="text-white font-bold text-sm mb-2">Problem Statement:</h5>
+                                        <p class="text-sm text-slate-300">Inconsistent testing environments and manual multi-sample genetic data exports consumed 30% of engineering bandwidth.</p>
+                                    </div>
+                                    <div class="mb-6">
+                                        <h5 class="text-white font-bold text-sm mb-2">Technical Challenges:</h5>
+                                        <p class="text-sm text-slate-300">Standardizing complex Java application deployments and handling massive data file splits without introduced errors.</p>
+                                    </div>
+                                    <div class="mb-6">
+                                        <h5 class="text-white font-bold text-sm mb-2">Architectural Solution:</h5>
+                                        <p class="text-sm text-slate-300">Led the setup of <strong>Strandomics test servers using Docker</strong>. Engineered a <strong>Python-driven automation pipeline</strong> for splitting multi-sample genetic exports, reducing manual intervention by 30% and accelerating the clinical sign-off cycle.</p>
+                                    </div>
+                                    <div class="flex flex-wrap gap-3">
+                                        <span class="skill-tag">Docker Orchestration</span><span class="skill-tag">Python Pipeline</span><span class="skill-tag">Linux Server Setup</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-black mb-16 text-center tracking-tight text-white">Certifications & Specialized Training</h2>
+            
+            <div class="grid md:grid-cols-2 gap-x-12 gap-y-8">
+                <!-- RAG -->
+                <div class="cert-card">
+                    <div class="flex items-center gap-4 mb-3">
+                        <i class="fas fa-brain text-blue-400 text-xl"></i>
+                        <h4 class="text-lg font-bold text-white">Advanced RAG Applications with Vector Database</h4>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed text-white">
+                        Mastered complex retrieval strategies, including hybrid search and semantic re-ranking, to connect LLMs with massive private datasets efficiently. This learning is pivotal for building real-world AI agents that require high accuracy and sub-second data retrieval from multi-terabyte enterprise knowledge bases.
+                    </p>
+                </div>
+
+                <!-- AWS -->
+                <div class="cert-card">
+                    <div class="flex items-center gap-4 mb-3">
+                        <i class="fab fa-aws text-orange-400 text-xl"></i>
+                        <h4 class="text-lg font-bold text-white">AWS Certification</h4>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed text-white">
+                        Gained deep expertise in architecting high-availability cloud solutions using Amazon EKS, Lambda, and CloudWatch for automated infrastructure management. In production systems, these skills enable the deployment of fault-tolerant microservices that can scale elastically to handle global traffic spikes.
+                    </p>
+                </div>
+
+                <!-- OOD -->
+                <div class="cert-card">
+                    <div class="flex items-center gap-4 mb-3">
+                        <i class="fas fa-cubes text-purple-400 text-xl"></i>
+                        <h4 class="text-lg font-bold text-white">Object-Oriented Design (University of Alberta)</h4>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed text-white">
+                        Mastered SOLID principles and advanced design patterns to create modular, extensible, and maintainable Java-based systems. These principles are fundamental in real-world software engineering to prevent technical debt and allow large-scale backends to evolve without breaking core functionality.
+                    </p>
+                </div>
+
+                <!-- ML/DL -->
+                <div class="cert-card">
+                    <div class="flex items-center gap-4 mb-3">
+                        <i class="fas fa-network-wired text-pink-400 text-xl"></i>
+                        <h4 class="text-lg font-bold text-white">Machine Learning & Deep Learning</h4>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed text-white">
+                        Learned to design and optimize neural networks for pattern recognition and automated classification tasks using large-scale datasets. This knowledge is applied in real-world systems to build intelligent features like automated ticket triaging and predictive maintenance pipelines.
+                    </p>
+                </div>
+
+                <!-- Crypto -->
+                <div class="cert-card md:col-span-2">
+                    <div class="flex items-center gap-4 mb-3">
+                        <i class="fas fa-user-shield text-green-400 text-xl"></i>
+                        <h4 class="text-lg font-bold text-white">Cryptography and Network Security</h4>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed max-w-3xl mx-auto text-white">
+                        Explored the mathematical foundations of encryption protocols, secure hashing, and digital signatures to ensure end-to-end data integrity. In enterprise SaaS environments, this expertise is critical for implementing secure authentication layers and protecting sensitive user data against evolving cyber threats.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Hire Me Section -->
+    <section class="py-24 px-6 bg-[#0a0a0c]">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-4xl font-black mb-16 tracking-tight text-white uppercase">Why Hire Me?</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="glass-card p-8 rounded-[2rem] border-b-2 border-b-blue-500">
+                    <h4 class="text-xl font-bold mb-4 text-white">Full-Cycle Ownership</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed">I don't just write features; I own <strong>Reliability, Security, and Scalability</strong>. From refactoring mission-critical payment paths at Amazon to migrating multi-tenant SaaS at Oracle, I design systems that require minimal operational overhead.</p>
+                </div>
+                <div class="glass-card p-8 rounded-[2rem] border-b-2 border-b-purple-500">
+                    <h4 class="text-xl font-bold mb-4 text-white">The Agentic Pioneer</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed">I bridge the gap between <strong>Legacy Backend Engineering</strong> and <strong>Modern AI Reasoning</strong>. I implement LLMs not as standalone wrappers, but as scalable, tool-using agents integrated deeply into secure enterprise microservices.</p>
+                </div>
+                <div class="glass-card p-8 rounded-[2rem] border-b-2 border-b-green-500">
+                    <h4 class="text-xl font-bold mb-4 text-white">Performance-Driven Mindset</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed">I am obsessed with the <strong>p99.9</strong>. Whether it is tuning JVM Garbage Collection at Strand or optimizing gRPC inter-service latency at Oracle, I save companies significant cloud costs by making code work harder for less.</p>
+                </div>
+                <div class="glass-card p-8 rounded-[2rem] border-b-2 border-b-orange-500">
+                    <h4 class="text-xl font-bold mb-4 text-white">Security-First Architect</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed">With a background in <strong>Cryptography and Network Security</strong>, I build with a Zero-Trust mindset. I ensure every AI-generated query is sanitized and every service request is scoped within strict RBAC guardrails.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Footer -->
+    <footer id="contact" class="py-24 border-t border-white/5 px-6 text-center text-white">
+        <div class="max-w-7xl mx-auto">
+            <h3 class="text-4xl font-black mb-10 gradient-text">Saurabh Kumar</h3>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-12 mb-12">
+                <a href="mailto:saurabhkumar121201@gmail.com" class="text-slate-400 hover:text-white transition flex items-center gap-2 font-bold"><i class="fas fa-envelope"></i> Email</a>
+                <a href="https://linkedin.com/in/saurabh-kumar-580735199/" target="_blank" class="text-slate-400 hover:text-white transition flex items-center gap-2 font-bold"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="tel:+919470625570" class="text-slate-400 hover:text-white transition flex items-center gap-2 font-bold"><i class="fas fa-phone"></i> +91 9470625570</a>
+            </div>
+            <p class="text-slate-600 text-[10px] uppercase font-bold tracking-[0.4em]">IIT Palakkad • Class of 2023 • SDE II Ready</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleExperience(id) {
+            const details = document.getElementById(id + '-details');
+            const chevron = document.getElementById(id + '-chevron');
+            
+            const isActive = details.classList.contains('active');
+            
+            // Close all others
+            document.querySelectorAll('.details-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.chevron-icon').forEach(el => el.classList.remove('rotate-180'));
+            
+            if (!isActive) {
+                details.classList.add('active');
+                chevron.classList.add('rotate-180');
+            }
+        }
+
+        // Open Oracle by default
+        window.onload = () => {
+            setTimeout(() => toggleExperience('oracle'), 500);
+        };
+    </script>
 </body>
 </html>
